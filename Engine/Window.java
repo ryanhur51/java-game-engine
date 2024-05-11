@@ -14,6 +14,7 @@ public class Window {
     private Canvas canvas;
     private Graphics graphics; 
     private BufferStrategy bs;
+    private Graphics g;
 
     public Window(){
         int width = 320;
@@ -36,6 +37,14 @@ public class Window {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
+
+        canvas.createBufferStrategy(2);
+        bs = canvas.getBufferStrategy();
+        g = bs.getDrawGraphics();
     }
     
+    public void update(){ // Draw the image to the canvas and use the buffer strategy
+        g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
+        bs.show();
+    }
 }
