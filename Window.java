@@ -1,5 +1,3 @@
-package Engine;
-
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
@@ -8,19 +6,26 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.Dimension;
 
+/**
+ * Window class that generates 
+ * 
+ */
 public class Window {
     private JFrame frame;
     private BufferedImage image;
     private Canvas canvas;
-    private Graphics graphics; 
     private BufferStrategy bs;
     private Graphics g;
 
-    public Window(){
-        int width = 320;
-        int height = 240;
-        float scale = 1f;
-        String title = "Java Game Engine";
+    int w, h;
+    float s;
+    String t;
+
+    public Window(int width, int height, float scale, String title){
+        w = width;
+        h = height;
+        s = scale;
+        t = title;
 
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         canvas = new Canvas();

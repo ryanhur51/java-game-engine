@@ -1,7 +1,6 @@
-package Engine;
-
 public class GameLoop implements Runnable{
     private Thread thread; 
+    private Window window;
     private boolean running = false; 
     private final double FPS = 1.0/60.0;
 
@@ -9,6 +8,7 @@ public class GameLoop implements Runnable{
 
     }
     public void start(){
+        window = new Window(320, 240, 1f, "Java Game Engine");
         thread = new Thread(this);
         thread.run();
     }
@@ -51,6 +51,7 @@ public class GameLoop implements Runnable{
             }
 
             if(render == true){
+                window.update();
                 frames++;
             } else {
                 try {
