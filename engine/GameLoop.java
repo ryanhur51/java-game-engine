@@ -1,9 +1,12 @@
 package engine;
 
+import java.awt.event.KeyEvent;
+
 public class GameLoop implements Runnable{
     private Thread thread; 
     private Window window;
     private Renderer renderer;
+    private Input input;
 
     private boolean running = false; 
     private final double FPS = 1.0/60.0;
@@ -18,6 +21,7 @@ public class GameLoop implements Runnable{
         window = new Window(320, 240, 1f, "Java Game Engine");
         thread = new Thread(this);
         renderer = new Renderer(window);
+        input = new Input(window);
 
         thread.run();
     }
@@ -52,6 +56,8 @@ public class GameLoop implements Runnable{
             while (unprocessedTime >= FPS){
                 unprocessedTime -= FPS;
                 render = true; 
+
+                input.update();
                 if (frameTime >= 1.0){
                     frameTime = 0;
                     fps = frames;
