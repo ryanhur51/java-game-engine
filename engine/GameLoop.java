@@ -1,7 +1,8 @@
 package engine;
 
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyEvent;
 
+// GameLoop class which contains the classes needed for game development and updates the thread.   
 public class GameLoop implements Runnable{
     private Thread thread; 
     private Window window;
@@ -9,14 +10,13 @@ public class GameLoop implements Runnable{
     private Input input;
 
     private boolean running = false; 
-    private final double FPS = 1.0/60.0;
+    private double FPS = 1.0/60.0;
 
     public GameLoop(){
     }
 
-    /**
-     * 
-     */
+
+     // Initializes window, thread, renderer, and the input
     public void start(){
         window = new Window(320, 240, 1f, "Java Game Engine");
         thread = new Thread(this);
@@ -27,12 +27,14 @@ public class GameLoop implements Runnable{
     }
 
     public void stop(){
-
     }
 
+
+    // Main gameloop
     public void run(){ 
         running = true;
         boolean render = false; 
+
         double currentTime = 0; // Time recorded at the start of the interation. 
         double lastTime = System.nanoTime() / 1000000000.0; // Time recorded at the end of the previous loop iteration. 
         double elapsedTime = 0;
@@ -50,9 +52,7 @@ public class GameLoop implements Runnable{
             unprocessedTime += elapsedTime;
             frameTime += elapsedTime;
 
-            /**
-             * Processing and printing the frames per second. 
-             */
+             // Processing and printing the frames per second. 
             while (unprocessedTime >= FPS){
                 unprocessedTime -= FPS;
                 render = true; 
@@ -66,16 +66,12 @@ public class GameLoop implements Runnable{
                 }
             }
 
-            if(render == true){
+
+            // Render new frames.
+            if (render == true){
                 renderer.clear();
                 window.update();
                 frames++;
-            } else {
-                try {
-                    Thread.sleep(1); // Prevents busy-wait loop.  
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

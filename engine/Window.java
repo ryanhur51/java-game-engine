@@ -8,9 +8,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.Dimension;
 
-/**
- * Window Class generates the window using the awt library (Abstract Window Toolkit). 
- */
+
+// Window Class generates the window using the awt library (Abstract Window Toolkit). 
 public class Window {
     private JFrame frame;
     private BufferedImage image;
@@ -54,17 +53,14 @@ public class Window {
         g = bs.getDrawGraphics();
     }
     
-    /**
-     * Renders the window by drawing it onto the screen with the buffer strategy. 
-     */
+    
+    // Renders the window by drawing it onto the screen with the buffer strategy. 
     public void update(){ 
         g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
         bs.show();
     }
 
-    /**
-     * Getters and Setters
-     */
+    // Getters and setters. 
     public int getWidth(){
         return w;
     }

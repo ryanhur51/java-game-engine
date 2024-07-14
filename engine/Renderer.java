@@ -3,7 +3,8 @@ package engine;
 import java.awt.image.DataBufferInt;
 
 public class Renderer {
-    private int w, h;
+    private int w;
+    private int h;
     private int[] p;
 
     public Renderer(Window window){
