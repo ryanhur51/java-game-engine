@@ -8,17 +8,19 @@ public class GameLoop implements Runnable{
     private Window window;
     private Renderer renderer;
     private Input input;
+    private Game game;
 
     private boolean running = false; 
-    private final double FPS = 1.0/60.0;
+    private final double frameTime = 1.0/60.0;
 
-    public GameLoop(){
+    public GameLoop(Game game){
+        this.game = game;
     }
 
 
     // Initializes window, thread, renderer, and the input
     public void start(){
-        window = new Window(320, 240, 1f, "Java Game Engine");
+        window = new Window(400, 300, 1f, "Java Game Engine");
         thread = new Thread(this);
         renderer = new Renderer(window);
         input = new Input(window);
@@ -27,6 +29,7 @@ public class GameLoop implements Runnable{
     }
 
     public void stop(){
+       
     }
 
 
@@ -36,27 +39,24 @@ public class GameLoop implements Runnable{
         boolean render = false; 
 
         double currentTime = 0; // Time recorded at the start of the interation. 
-        double lastTime = System.nanoTime() / 1000000000.0; // Time recorded at the end of the previous loop iteration. 
+        double startTime = System.nanoTime() / 1000000000.0; // Time recorded at the end of the previous loop iteration. Divided by 1e9 to convert nanoseconds into seconds
         double elapsedTime = 0;
-        double unprocessedTime = 0;
-
-        // double frameTime = 0;
-        // int frames = 0;
-        // int fps = 0;
+        double capTime = 0;
 
         while (running == true){
             render = false;
             currentTime = System.nanoTime() / 1000000000.0; 
-            elapsedTime = currentTime - lastTime;
-            lastTime = currentTime; // Update lastTime to be able to loop properly. 
-            unprocessedTime += elapsedTime;
+            elapsedTime = currentTime - startTime;
+            startTime = currentTime; // Update startTime to be able to loop properly. 
+            capTime += elapsedTime;
             //frameTime += elapsedTime;
 
              // Processing and printing the frames per second. 
-            while (unprocessedTime >= FPS){
-                unprocessedTime -= FPS;
+            while (capTime >= frameTime){
+                capTime = capTime - frameTime;
                 render = true; 
 
+                game.update(window);
                 input.update();
                 // if (frameTime >= 1.0){
                 //     frameTime = 0;
@@ -66,18 +66,13 @@ public class GameLoop implements Runnable{
                 // }
             }
 
-
             // Render new frames.
             if (render == true){
                 renderer.clear();
+                game.render(window, renderer);
                 window.update();
                 // frames++;
             }
         }
-    }
-
-    public static void main (String[]args){
-        GameLoop gl = new GameLoop();
-        gl.start();
     }
 }

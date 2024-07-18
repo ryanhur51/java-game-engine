@@ -45,7 +45,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     }
 
 
-    // Many of these methods are required for the interface to work properly, but not required to fill out completely. 
+    // Many of these methods are required for the interface to work properly
     public boolean isKey(int keyCode){
         return keys[keyCode];
     }
@@ -69,8 +69,6 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     public boolean isMouseButtonDown(int keyCode){
         return mouseButton[keyCode] && !mouseButtonLast[keyCode];
     }
-
-
 
     @Override
     public void mouseDragged(MouseEvent e) {
