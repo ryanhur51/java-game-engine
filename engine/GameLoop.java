@@ -56,7 +56,7 @@ public class GameLoop implements Runnable{
                 capTime = capTime - frameTime;
                 render = true; 
 
-                game.update(window);
+                game.update(this);
                 input.update();
                 // if (frameTime >= 1.0){
                 //     frameTime = 0;
@@ -74,5 +74,9 @@ public class GameLoop implements Runnable{
                 // frames++;
             }
         }
+    }
+
+    public Input getInput(){
+        return input;
     }
 }

@@ -1,15 +1,22 @@
 package game;
 
+import java.awt.event.KeyEvent;
+
 import engine.Game;
 import engine.GameLoop;
 import engine.Renderer;
 import engine.Window;
 
 public class GameManager extends Game {
+    public GameManager(){
+
+    }
 
     @Override
-    public void update(Window window) {
-
+    public void update(GameLoop gl) {
+        if (gl.getInput().isKeyDown(KeyEvent.VK_A)){
+            System.out.println("A was pressed");
+        }
     }
 
     @Override
