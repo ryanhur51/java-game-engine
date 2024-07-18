@@ -10,13 +10,13 @@ public class GameLoop implements Runnable{
     private Input input;
 
     private boolean running = false; 
-    private double FPS = 1.0/60.0;
+    private final double FPS = 1.0/60.0;
 
     public GameLoop(){
     }
 
 
-     // Initializes window, thread, renderer, and the input
+    // Initializes window, thread, renderer, and the input
     public void start(){
         window = new Window(320, 240, 1f, "Java Game Engine");
         thread = new Thread(this);
@@ -40,9 +40,9 @@ public class GameLoop implements Runnable{
         double elapsedTime = 0;
         double unprocessedTime = 0;
 
-        double frameTime = 0;
-        int frames = 0;
-        int fps = 0;
+        // double frameTime = 0;
+        // int frames = 0;
+        // int fps = 0;
 
         while (running == true){
             render = false;
@@ -50,7 +50,7 @@ public class GameLoop implements Runnable{
             elapsedTime = currentTime - lastTime;
             lastTime = currentTime; // Update lastTime to be able to loop properly. 
             unprocessedTime += elapsedTime;
-            frameTime += elapsedTime;
+            //frameTime += elapsedTime;
 
              // Processing and printing the frames per second. 
             while (unprocessedTime >= FPS){
@@ -58,12 +58,12 @@ public class GameLoop implements Runnable{
                 render = true; 
 
                 input.update();
-                if (frameTime >= 1.0){
-                    frameTime = 0;
-                    fps = frames;
-                    frames = 0;
-                    System.out.println(fps);
-                }
+                // if (frameTime >= 1.0){
+                //     frameTime = 0;
+                //     fps = frames;
+                //     frames = 0;
+                //     System.out.println(fps);
+                // }
             }
 
 
@@ -71,7 +71,7 @@ public class GameLoop implements Runnable{
             if (render == true){
                 renderer.clear();
                 window.update();
-                frames++;
+                // frames++;
             }
         }
     }

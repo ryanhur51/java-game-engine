@@ -6,18 +6,23 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+// Input class which implements the different interfaces for the mouse and keyboard
 public class Input implements KeyListener, MouseListener, MouseMotionListener{
-    private boolean[] keys = new boolean[104]; // Keyboard inputs.
+    // Keyboard inputs.
+    private boolean[] keys = new boolean[104];
     private boolean[] keysLast = new boolean[104];
 
-    private boolean[] mouseButton = new boolean[3]; // Mouse inputs.
+    // Mouse inputs.
+    private boolean[] mouseButton = new boolean[3]; 
     private boolean[] mouseButtonLast = new boolean[3];
 
-    private int mouseX; // Cursor position.
+    // Cursor position.
+    private int mouseX; 
     private int mouseY;
     
     private Window window; 
 
+    // Constructor
     public Input(Window window){
         this.window = window;
         mouseX = 0;
@@ -27,6 +32,8 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         window.getCanvas().addMouseListener(this);
         window.getCanvas().addMouseMotionListener(this);
     }
+
+
     public void update(){
         for (int i = 0; i < keys.length; i++){
             keysLast[i] = keys[i];
@@ -37,6 +44,8 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         }
     }
 
+
+    // Many of these methods are required for the interface to work properly, but not required to fill out completely. 
     public boolean isKey(int keyCode){
         return keys[keyCode];
     }
