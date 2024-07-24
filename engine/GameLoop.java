@@ -20,7 +20,7 @@ public class GameLoop implements Runnable{
 
     // Initializes window, thread, renderer, and the input
     public void start(){
-        window = new Window(400, 300, 1f, "Java Game Engine");
+        window = new Window(800, 600, 1f, "Java Game Engine");
         thread = new Thread(this);
         renderer = new Renderer(window);
         input = new Input(window);
@@ -69,7 +69,7 @@ public class GameLoop implements Runnable{
             // Render new frames.
             if (render == true){
                 renderer.clear();
-                game.render(window, renderer);
+                game.render(this, renderer);
                 window.update();
                 // frames++;
             }

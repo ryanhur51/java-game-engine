@@ -6,10 +6,13 @@ import engine.Game;
 import engine.GameLoop;
 import engine.Renderer;
 import engine.Window;
+import engine.graphics.Image;
 
 public class GameManager extends Game {
-    public GameManager(){
 
+    private Image image;
+    public GameManager(){
+        image = new Image("/resources/hi.jpg");
     }
 
     @Override
@@ -20,8 +23,8 @@ public class GameManager extends Game {
     }
 
     @Override
-    public void render(Window window, Renderer r) {
-       
+    public void render(GameLoop gl, Renderer r) {
+        r.drawImage(image, 0, 0);
     }
 
     public static void main(String[]args){

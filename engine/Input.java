@@ -9,12 +9,12 @@ import java.awt.event.MouseMotionListener;
 // Input class which implements the different interfaces for the mouse and keyboard
 public class Input implements KeyListener, MouseListener, MouseMotionListener{
     // Keyboard inputs.
-    private boolean[] keys = new boolean[104];
-    private boolean[] keysLast = new boolean[104];
+    private boolean[] keysCurrent = new boolean[104];
+    private boolean[] keysElapsed = new boolean[104];
 
     // Mouse inputs.
-    private boolean[] mouseButton = new boolean[3]; 
-    private boolean[] mouseButtonLast = new boolean[3];
+    private boolean[] mouseButtonCurrent = new boolean[3]; 
+    private boolean[] mouseButtonElapsed = new boolean[3];
 
     // Cursor position.
     private int mouseX; 
@@ -35,39 +35,39 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
 
     public void update(){
-        for (int i = 0; i < keys.length; i++){
-            keysLast[i] = keys[i];
+        for (int i = 0; i < keysCurrent.length; i++){
+            keysElapsed[i] = keysCurrent[i];
         }
 
-        for (int i = 0; i < mouseButton.length; i++){
-            mouseButtonLast[i] = mouseButton[i];
+        for (int i = 0; i < mouseButtonCurrent.length; i++){
+            mouseButtonElapsed[i] = mouseButtonCurrent[i];
         }
     }
 
 
     // Many of these methods are required for the interface to work properly
     public boolean isKey(int keyCode){
-        return keys[keyCode];
+        return keysCurrent[keyCode];
     }
 
     public boolean isKeyUp(int keyCode){
-        return !keys[keyCode] && keysLast[keyCode];
+        return !keysCurrent[keyCode] && keysElapsed[keyCode];
     }
 
     public boolean isKeyDown(int keyCode){
-        return keys[keyCode] && !keysLast[keyCode];
+        return keysCurrent[keyCode] && !keysElapsed[keyCode];
     }
 
     public boolean isMouseButton(int keyCode){
-        return mouseButton[keyCode];
+        return mouseButtonCurrent[keyCode];
     }
 
     public boolean isMouseButtonUp(int keyCode){
-        return !mouseButton[keyCode] && mouseButtonLast[keyCode];
+        return !mouseButtonCurrent[keyCode] && mouseButtonElapsed[keyCode];
     }
 
     public boolean isMouseButtonDown(int keyCode){
-        return mouseButton[keyCode] && !mouseButtonLast[keyCode];
+        return mouseButtonCurrent[keyCode] && !mouseButtonElapsed[keyCode];
     }
 
     @Override
@@ -88,12 +88,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mouseButton[e.getButton()] = true;
+        mouseButtonCurrent[e.getButton()] = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        mouseButton[e.getButton()] = false;
+        mouseButtonCurrent[e.getButton()] = false;
     }
 
     @Override
@@ -113,12 +113,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        keys[e.getKeyCode()] = true;
+        keysCurrent[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        keys[e.getKeyCode()] = false;
+        keysCurrent[e.getKeyCode()] = false;
     }
 
     /**
