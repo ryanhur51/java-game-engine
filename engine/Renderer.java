@@ -24,7 +24,6 @@ public class Renderer {
 
     public void setPixel(int x, int y, int val){
         if ((x < 0 || x >= pW || y < 0 || y >= pH) || val == 0xff461B46){ //0xff461B46 is an arbitrary color which represents as a "don't render" color/value. 
-            System.out.println (pH);
             return;
         }
         p[x + y * pW] = val;

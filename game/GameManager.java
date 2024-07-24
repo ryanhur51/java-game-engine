@@ -24,7 +24,7 @@ public class GameManager extends Game {
 
     @Override
     public void render(GameLoop gl, Renderer r) {
-        r.drawImage(image, 0, 0);
+        r.drawImage(image, gl.getInput().getMouseX(),  gl.getInput().getMouseY());
     }
 
     public static void main(String[]args){
