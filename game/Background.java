@@ -4,30 +4,39 @@ import engine.Image;
 import engine.Renderer;
 
 public class Background {
-    private int x;
-
+    private int posX;
+    private int speed;
     private Image image;
     
-    public Background(Renderer r){
+    public Background(){
+        posX = 0;
+        speed = 4;
         image = new Image("/res/background.png");
-        r.drawImage(image, 0, 0, 1.5);
-        x = 0;
     }
 
     public void update(){
-        System.out.println(x);
-        x += 10;
-
-        if (x > 100){
-            x = 0;
+        posX -= speed;
+        if (posX < -340){
+            posX = 0;
         }
     }
 
+    public void render(Renderer r){
+        r.drawImage(image, posX, 0, 1.5);
+    }
+
     public int getX(){
-        return x;
+        return posX;
     }
     public void setX(int num){
-        this.x = num;
+        this.posX = num;
+    }
+
+    public Image getImage(){
+        return image;
+    }
+    public void setImage(Image image){
+        this.image = image;
     }
 
 
