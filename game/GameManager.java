@@ -4,15 +4,14 @@ import java.awt.event.KeyEvent;
 
 import engine.Game;
 import engine.GameLoop;
+import engine.Image;
 import engine.Renderer;
-import engine.Window;
-import engine.graphics.Image;
 
 public class GameManager extends Game {
 
     private Image image;
     public GameManager(){
-        image = new Image("/resources/hi.jpg");
+        image = new Image("/res/hi.jpg");
     }
 
     @Override
@@ -24,7 +23,7 @@ public class GameManager extends Game {
 
     @Override
     public void render(GameLoop gl, Renderer r) {
-        r.drawImage(image, gl.getInput().getMouseX(),  gl.getInput().getMouseY());
+        r.drawImage(image, gl.getInput().getMouseX(),  gl.getInput().getMouseY(), 2);
     }
 
     public static void main(String[]args){

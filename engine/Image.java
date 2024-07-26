@@ -1,4 +1,4 @@
-package engine.graphics;
+package engine;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -12,6 +12,7 @@ public class Image {
 
     public Image (String file){
         BufferedImage image = null;
+        
         try {
             image = ImageIO.read(Image.class.getResourceAsStream(file));
         } catch (IOException e){
@@ -36,7 +37,3 @@ public class Image {
         return p;
     }
 }
-
-
-
-

@@ -1,7 +1,6 @@
 package engine;
 
 import java.awt.image.DataBufferInt;
-import engine.graphics.Image;
 
 // Renderer class that gets the data from the window 
 public class Renderer {
@@ -29,10 +28,15 @@ public class Renderer {
         p[x + y * pW] = val;
     }
 
-    public void drawImage(Image image, int offsetX, int offsetY){
-        for (int x = 0; x < image.getW(); x++){
-            for (int y = 0; y < image.getH(); y++){
-                setPixel(x + offsetX, y + offsetY, image.getP()[x + y * image.getW()]);
+    public void drawImage(Image image, int offsetX, int offsetY, double scale) {
+        int scaledWidth = (int) (image.getW() * scale);
+        int scaledHeight = (int) (image.getH() * scale);
+    
+        for (int x = 0; x < scaledWidth; x++) {
+            for (int y = 0; y < scaledHeight; y++) {
+                int origX = (int) (x / scale);
+                int origY = (int) (y / scale);
+                setPixel(x + offsetX, y + offsetY, image.getP()[origX + origY * image.getW()]);
             }
         }
     }
