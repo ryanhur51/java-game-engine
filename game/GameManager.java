@@ -11,7 +11,7 @@ public class GameManager extends Game {
 
     private Image image;
     public GameManager(){
-        image = new Image("/res/hi.jpg");
+        image = new Image("/res/Background.png");
     }
 
     @Override
@@ -23,7 +23,9 @@ public class GameManager extends Game {
 
     @Override
     public void render(GameLoop gl, Renderer r) {
-        r.drawImage(image, gl.getInput().getMouseX(),  gl.getInput().getMouseY(), 2);
+        int x = 0;
+        r.drawImage(image, x,  0, 1.5);
+        x+= 10;
     }
 
     public static void main(String[]args){
