@@ -24,11 +24,12 @@ public class GameManager extends Game {
         // }
 
         background.update();
-        player.update();
+        player.update(gl);
         
-        if (player.getPosY() > 585){
-            System.out.println("Ya Lost");
+        if (player.getIsLost() == true){
+           // System.out.println("over");
         }
+        
     }
 
     @Override
