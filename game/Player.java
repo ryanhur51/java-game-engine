@@ -17,7 +17,6 @@ public class Player {
     private double jumpChange;
 
     private Image image;
-    private GameLoop gl;
 
     public Player(){
         posY = 0;
