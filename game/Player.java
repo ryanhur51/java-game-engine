@@ -61,5 +61,13 @@ public class Player {
 
     public boolean getIsStart(){
         return isStart;
+    } 
+
+    public int getPosX(){
+        return posX;
     }
+    public int getPosY(){
+        return posY;
+    }
+
 }

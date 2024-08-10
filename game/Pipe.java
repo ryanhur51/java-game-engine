@@ -2,7 +2,6 @@ package game;
 
 import engine.Image;
 import engine.Renderer;
-import java.util.Random;
 
 public class Pipe {
 
@@ -14,7 +13,7 @@ public class Pipe {
     public Pipe(int x, int y){
         image = new Image("/res/pipe.png");
         posX = x;
-        posY = 
+        posY = y;
         speed = 4; 
     }
 
@@ -24,5 +23,13 @@ public class Pipe {
 
     public void render(Renderer r){
         r.drawImage(image, posX, posY, 1);
+    }
+
+    public int getPosX(){
+        return posX;
+    }
+
+    public void setPosX(int posX){
+        this.posX = posX;
     }
 }
