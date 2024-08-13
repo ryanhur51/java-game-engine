@@ -12,33 +12,34 @@ public class GameManager extends Game {
     private Player player = new Player();
     private ArrayList<Pipe> list = new ArrayList<Pipe>();
     private int counter = 0;
+    private int pipeSpawnTimer = 60; // Tracks the time or frames until the next pipe spawn
+    private final int pipeSpawnInterval = 60;
     
     public GameManager(){
     }
 
     @Override
     public void update(GameLoop gl) {
-        if (player.getIsLost() == true){
+        if (player.isLost()) {
             return;
         } 
-        
-
+    
         background.update();
         player.update(gl);
-
-        if (player.getIsStart()){
-            if (list.size() < 3){
-                list.add(new Pipe(600 + 300 * counter, (int)((Math.random() * -250) - 200)));
+    
+        if (player.isStart()) {
+            pipeSpawnTimer++;
+            if (pipeSpawnTimer >= pipeSpawnInterval) {
+                list.add(new Pipe(600 + 100 * counter, (int)((Math.random() * -250) - 200)));
                 counter++;
-            } 
-            if (list.get(0).getPosX() < -80){ 
-                list.add(new Pipe(600 + 300 * counter, (int)((Math.random() * -250) - 200)));
+                pipeSpawnTimer = 0; // Reset the timer after spawning
+            }
+            if (list.get(0).getPosX() < -80) { 
                 list.remove(0);
             }
-            for (int i = 0; i < list.size(); i++){
+            for (int i = 0; i < list.size(); i++) {
                 list.get(i).update();
             }
-            System.out.println(counter);
         }
     }
 

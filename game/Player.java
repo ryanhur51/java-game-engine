@@ -55,17 +55,14 @@ public class Player {
         r.drawImage(image, posX, posY, 0.09);
     }
 
-    public boolean getIsLost(){
+    public boolean isLost(){
         return isLost;
     }
 
-    public boolean getIsStart(){
+    public boolean isStart(){
         return isStart;
     } 
 
-    public int getPosX(){
-        return posX;
-    }
     public int getPosY(){
         return posY;
     }
