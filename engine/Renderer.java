@@ -40,4 +40,15 @@ public class Renderer {
             }
         }
     }
+
+    public void drawRect(int offsetX, int offsetY, int width, int height, int color){
+        for (int y = 0; y <= height; y++){
+            setPixel(offsetX, y + offsetY, color);
+            setPixel(offsetX + width, y + offsetY, color);
+            for (int x = 0; x <= width; x++){
+                setPixel(x + offsetX, offsetY, color);
+                setPixel(x + offsetX, offsetY + height, color);
+            }
+        }
+    }
 }

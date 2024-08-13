@@ -16,7 +16,7 @@ public class Background {
 
     public void update(){
         posX -= speed;
-        if (posX < -350){
+        if (posX < -347){
             posX = 0;
         }
     }

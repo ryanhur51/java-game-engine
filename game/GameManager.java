@@ -28,11 +28,12 @@ public class GameManager extends Game {
         player.update(gl);
     
         if (player.isStart()) {
+           
             pipeSpawnTimer++;
             if (pipeSpawnTimer >= pipeSpawnInterval) {
                 list.add(new Pipe(600 + 100 * counter, (int)((Math.random() * -250) - 200)));
                 counter++;
-                pipeSpawnTimer = 0; // Reset the timer after spawning
+                pipeSpawnTimer = 0; // Reset the timer after spawning.
             }
             if (list.get(0).getPosX() < -80) { 
                 list.remove(0);
@@ -40,6 +41,7 @@ public class GameManager extends Game {
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).update();
             }
+            getCollision(0,0);
         }
     }
 
@@ -50,6 +52,17 @@ public class GameManager extends Game {
         for (int i = 0; i < list.size(); i++){
             list.get(i).render(r);
         }
+    }
+
+    public boolean getCollision(int x, int y){
+        if (player.getPosX() > list.get(0).getPosX() - 77){
+            System.out.println("player posY: " + player.getPosY() + "\n" + "pipe posY: " + list.get(0).getPosY());
+            if (player.getPosY() > list.get(0).getPosY() + 715 && player.getPosY() < list.get(0).getPosY() + 150){
+                System.out.println("pog");
+                // TODO RIGHT HERE
+            }
+        }
+        return true;
     }
 
     public static void main(String[]args){

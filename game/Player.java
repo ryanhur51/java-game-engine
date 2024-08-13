@@ -44,7 +44,7 @@ public class Player {
             posY += jumpChange;
             jumpChange += gravity;
         }
-        if (posY > 585){
+        if (posY >= 585){
             isLost = true;
         } else if (posY < 0){
             posY -= jumpChange;
@@ -65,6 +65,9 @@ public class Player {
 
     public int getPosY(){
         return posY;
+    }
+    public int getPosX(){
+        return posX;
     }
 
 }
