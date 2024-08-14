@@ -23,7 +23,7 @@ public class Pipe {
 
     public void render(Renderer r){
         r.drawImage(image, posX, posY, 1);
-        r.drawRect(posX, posY+550, 77, 165, 0x12312312);
+        // r.drawRect(posX, posY+550, 77, 165, 0x12312312);
     }
 
     public int getPosX(){

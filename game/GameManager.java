@@ -20,9 +20,9 @@ public class GameManager extends Game {
 
     @Override
     public void update(GameLoop gl) {
-        if (player.isLost()) {
-            return;
-        } 
+        // if (player.isLost()) {
+        //     return;
+        // } 
     
         background.update();
         player.update(gl);
@@ -41,7 +41,7 @@ public class GameManager extends Game {
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).update();
             }
-            getCollision(0,0);
+            getCollision();
         }
     }
 
@@ -54,12 +54,13 @@ public class GameManager extends Game {
         }
     }
 
-    public boolean getCollision(int x, int y){
-        if (player.getPosX() > list.get(0).getPosX() - 77){
-            System.out.println("player posY: " + player.getPosY() + "\n" + "pipe posY: " + list.get(0).getPosY());
-            if (player.getPosY() > list.get(0).getPosY() + 715 && player.getPosY() < list.get(0).getPosY() + 150){
-                System.out.println("pog");
-                // TODO RIGHT HERE
+    public boolean getCollision(){
+        if (player.getPosX() > list.get(0).getPosX() - 55 && player.getPosX() < list.get(0).getPosX() + 55){
+            //System.out.println("player posY: " + player.getPosY() + "\n" + "pipe posY: " + (list.get(0).getPosY() + 550) + "\n");
+            if (player.getPosY() < list.get(0).getPosY() + 715 && player.getPosY() > list.get(0).getPosY() + 550){
+                
+            } else {
+                player.setIsLost(true);
             }
         }
         return true;

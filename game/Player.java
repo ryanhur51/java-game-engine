@@ -49,6 +49,13 @@ public class Player {
         } else if (posY < 0){
             posY -= jumpChange;
         }
+        if (isLost){
+            while (posY <= 585){
+                System.out.println("hi");
+                posY += 20;
+            }
+            return;
+        }
     }
 
     public void render(Renderer r){
@@ -57,6 +64,10 @@ public class Player {
 
     public boolean isLost(){
         return isLost;
+    }
+    
+    public void setIsLost(boolean isLost){
+        this.isLost = isLost;
     }
 
     public boolean isStart(){
