@@ -2,6 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 import engine.Game;
 import engine.GameLoop;
 import engine.Renderer;
@@ -15,20 +18,31 @@ public class GameManager extends Game {
     private int pipeSpawnTimer = 60; // Tracks the time or frames until the next pipe spawn
     private final int pipeSpawnInterval = 60;
     
+    // Constructor 
     public GameManager(){
     }
 
     @Override
     public void update(GameLoop gl) {
-        // if (player.isLost()) {
-        //     return;
-        // } 
-    
+        if (player.isLost()) {
+            player.setIsStart(false);
+
+            // Reset mechanic.
+            if (gl.getInput().isKeyDown(KeyEvent.VK_SPACE) || gl.getInput().isMouseButtonDown(MouseEvent.BUTTON1) == true){
+                list.clear();
+                pipeSpawnTimer = 60; 
+                counter = 0;
+                player.setPosY(250);
+                player.setIsLost(false);
+            }
+            return;
+        } 
+        
         background.update();
         player.update(gl);
     
-        if (player.isStart()) {
-           
+        // Spawn pipes mechanic.
+        if (player.isStart()) { 
             pipeSpawnTimer++;
             if (pipeSpawnTimer >= pipeSpawnInterval) {
                 list.add(new Pipe(600 + 100 * counter, (int)((Math.random() * -250) - 200)));
@@ -54,16 +68,14 @@ public class GameManager extends Game {
         }
     }
 
-    public boolean getCollision(){
+    public void getCollision(){
         if (player.getPosX() > list.get(0).getPosX() - 55 && player.getPosX() < list.get(0).getPosX() + 55){
-            //System.out.println("player posY: " + player.getPosY() + "\n" + "pipe posY: " + (list.get(0).getPosY() + 550) + "\n");
-            if (player.getPosY() < list.get(0).getPosY() + 715 && player.getPosY() > list.get(0).getPosY() + 550){
-                
+            if (player.getPosY() < list.get(0).getPosY() + 674 && player.getPosY() > list.get(0).getPosY() + 550){
+                return;
             } else {
                 player.setIsLost(true);
             }
         }
-        return true;
     }
 
     public static void main(String[]args){

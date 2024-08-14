@@ -74,11 +74,20 @@ public class Player {
         return isStart;
     } 
 
+    public void setIsStart(boolean isStart){
+        this.isStart = isStart;
+    }
+
+
     public int getPosY(){
         return posY;
     }
     public int getPosX(){
         return posX;
+    }
+
+    public void setPosY(int posY){
+        this.posY = posY;
     }
 
 }
