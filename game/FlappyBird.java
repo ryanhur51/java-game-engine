@@ -9,8 +9,7 @@ import engine.Game;
 import engine.GameLoop;
 import engine.Renderer;
 
-public class GameManager extends Game {
-    // Initializing game objects 
+public class FlappyBird extends Game {
     private Background background = new Background();
     private Player player = new Player();
     private ArrayList<Pipe> list = new ArrayList<Pipe>();
@@ -19,7 +18,7 @@ public class GameManager extends Game {
     private final int pipeSpawnInterval = 60;
     
     // Constructor 
-    public GameManager(){
+    public FlappyBird(){
     }
 
     @Override
@@ -38,7 +37,7 @@ public class GameManager extends Game {
             return;
         } 
         
-        background.update();
+        background.update(gl);
         player.update(gl);
     
         // Spawn pipes mechanic.
@@ -53,7 +52,7 @@ public class GameManager extends Game {
                 list.remove(0);
             }
             for (int i = 0; i < list.size(); i++) {
-                list.get(i).update();
+                list.get(i).update(gl);
             }
             getCollision();
         }
@@ -61,13 +60,14 @@ public class GameManager extends Game {
 
     @Override
     public void render(GameLoop gl, Renderer r) {
-        background.render(r);
-        player.render(r);
+        background.render(gl, r);
+        player.render(gl, r);
         for (int i = 0; i < list.size(); i++){
-            list.get(i).render(r);
+            list.get(i).render(gl, r);
         }
     }
 
+    // Method to determine whether the player has collided with the pipes.
     public void getCollision(){
         if (player.getPosX() > list.get(0).getPosX() - 55 && player.getPosX() < list.get(0).getPosX() + 55){
             if (player.getPosY() < list.get(0).getPosY() + 674 && player.getPosY() > list.get(0).getPosY() + 550){
@@ -79,8 +79,7 @@ public class GameManager extends Game {
     }
 
     public static void main(String[]args){
-        GameLoop gl = new GameLoop(new GameManager());
+        GameLoop gl = new GameLoop(new FlappyBird());
         gl.start();
     }
-    
 }

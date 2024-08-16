@@ -9,7 +9,7 @@ import java.awt.event.MouseMotionListener;
 // Input class which implements the different interfaces for the mouse and keyboard
 public class Input implements KeyListener, MouseListener, MouseMotionListener{
     // Keyboard inputs.
-    private boolean[] keysCurrent = new boolean[104];
+    private boolean[] keysCurrent = new boolean[104]; // 104 keys on a standard, full-size keyboard. 
     private boolean[] keysElapsed = new boolean[104];
 
     // Mouse inputs.
@@ -33,12 +33,11 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         window.getCanvas().addMouseMotionListener(this);
     }
 
-
+    // Updates the key and mouse presses (for the GameLoop)
     public void update(){
         for (int i = 0; i < keysCurrent.length; i++){
             keysElapsed[i] = keysCurrent[i];
         }
-
         for (int i = 0; i < mouseButtonCurrent.length; i++){
             mouseButtonElapsed[i] = mouseButtonCurrent[i];
         }
@@ -71,9 +70,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    public void mouseDragged(MouseEvent e) { }
 
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -82,9 +79,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -97,19 +92,13 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -121,13 +110,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         keysCurrent[e.getKeyCode()] = false;
     }
 
-    /**
-     * Getters and setters. 
-     */
-    public int getMouseX(){
-        return mouseX;
-    }
-    public int getMouseY(){
-        return mouseY;
-    }
+    // Getters
+    public int getMouseX(){ return mouseX; }
+    public int getMouseY(){ return mouseY; }
 }

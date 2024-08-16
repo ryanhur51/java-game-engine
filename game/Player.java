@@ -7,7 +7,8 @@ import engine.GameLoop;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Player {
+// PLayer game object (bird).
+public class Player extends GameObject {
     private int posX;
     private int posY;
     private boolean isLost;
@@ -19,6 +20,7 @@ public class Player {
 
     private Image image;
 
+    // Constructor
     public Player(){
         posY = 250;
         posX = 100;
@@ -32,6 +34,7 @@ public class Player {
         image = new Image("/res/player.png");
     }
 
+    @Override
     public void update(GameLoop gl){
         if (gl.getInput().isKeyDown(KeyEvent.VK_SPACE) || gl.getInput().isMouseButtonDown(MouseEvent.BUTTON1) == true){
             isStart = true;
@@ -58,36 +61,21 @@ public class Player {
         }
     }
 
-    public void render(Renderer r){
+    @Override
+    public void render(GameLoop gl, Renderer r){
         r.drawImage(image, posX, posY, 0.09);
     }
 
-    public boolean isLost(){
-        return isLost;
-    }
-    
-    public void setIsLost(boolean isLost){
-        this.isLost = isLost;
-    }
+    // Getters and Setters. 
+    public boolean isLost(){ return isLost; }
+    public void setIsLost(boolean isLost){ this.isLost = isLost; }
 
-    public boolean isStart(){
-        return isStart;
-    } 
+    public boolean isStart(){ return isStart; } 
+    public void setIsStart(boolean isStart){ this.isStart = isStart; }
 
-    public void setIsStart(boolean isStart){
-        this.isStart = isStart;
-    }
+    public int getPosX(){ return posX; }
+    public void setPosX(int posX){ this.posX = posX; }
 
-
-    public int getPosY(){
-        return posY;
-    }
-    public int getPosX(){
-        return posX;
-    }
-
-    public void setPosY(int posY){
-        this.posY = posY;
-    }
-
+    public int getPosY(){ return posY; }
+    public void setPosY(int posY){ this.posY = posY; }
 }

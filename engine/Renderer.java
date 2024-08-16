@@ -2,7 +2,7 @@ package engine;
 
 import java.awt.image.DataBufferInt;
 
-// Renderer class that gets the data from the window 
+// Renderer class that gets the data from the window.
 public class Renderer {
     private int pW;
     private int pH;
@@ -28,10 +28,13 @@ public class Renderer {
         p[x + y * pW] = val;
     }
 
+    // Draw an image using a scale and offset positions. 
     public void drawImage(Image image, int offsetX, int offsetY, double scale) {
+        // Scale the heigh and width accordingly. 
         int scaledWidth = (int) (image.getW() * scale);
         int scaledHeight = (int) (image.getH() * scale);
     
+        // Draw the image. 
         for (int x = 0; x < scaledWidth; x++) {
             for (int y = 0; y < scaledHeight; y++) {
                 int origX = (int) (x / scale);
@@ -41,6 +44,7 @@ public class Renderer {
         }
     }
 
+    // Draw a rectangle
     public void drawRect(int offsetX, int offsetY, int width, int height, int color){
         for (int y = 0; y <= height; y++){
             setPixel(offsetX, y + offsetY, color);

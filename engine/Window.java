@@ -21,11 +21,12 @@ public class Window {
     private float s;
     private String t;
 
+    // Constructor
     public Window(int width, int height, float scale, String title){
         w = width;
         h = height;
         s = scale;
-        t = title;
+        t = title; 
 
         // Create buffered image. 
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -60,26 +61,12 @@ public class Window {
         bs.show();
     }
 
-    // Getters and setters. 
-    public int getWidth(){
-        return w;
-    }
-    public int getHeight(){
-        return h;
-    }
-    public float getScale(){
-        return s;
-    }
-    public String getTitle(){
-        return t;
-    }
-    public BufferedImage getImage(){
-        return image; 
-    }
-    public Canvas getCanvas(){
-        return canvas; 
-    }
-    public JFrame getFrame(){
-        return frame;
-    }
+    // Getters
+    public int getWidth(){ return w; }
+    public int getHeight(){ return h; }
+    public float getScale(){ return s; }
+    public String getTitle(){ return t; }
+    public BufferedImage getImage(){ return image;  }
+    public Canvas getCanvas(){ return canvas;  }
+    public JFrame getFrame(){ return frame; }
 }

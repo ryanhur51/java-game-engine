@@ -3,4 +3,4 @@ TODO: Make a C program to compile all the files easier.
 javac .\engine\*.java
 javac .\game\*.java
 
-java game.GameManager  
+java game.FlappyBird  

@@ -2,43 +2,38 @@ package game;
 
 import engine.Image;
 import engine.Renderer;
+import engine.GameLoop;
 
-public class Background {
+// Background game object 
+public class Background extends GameObject{
     private int posX;
     private int speed;
     private Image image;
     
+    //Constructor
     public Background(){
         posX = 0;
         speed = 4;
         image = new Image("/res/background.png");
     }
 
-    public void update(){
+    @Override
+    public void update(GameLoop gl){
         posX -= speed;
         if (posX < -347){
             posX = 0;
         }
     }
 
-    public void render(Renderer r){
+    @Override
+    public void render(GameLoop gl, Renderer r){
         r.drawImage(image, posX, 0, 1.5);
     }
 
-    public int getX(){
-        return posX;
-    }
-    public void setX(int num){
-        this.posX = num;
-    }
+    // Getters and setters.
+    public int getX(){ return posX; }
+    public void setX(int num){ this.posX = num; }
 
-    public Image getImage(){
-        return image;
-    }
-    public void setImage(Image image){
-        this.image = image;
-    }
-
-
-
+    public Image getImage(){ return image; }
+    public void setImage(Image image){ this.image = image; }
 }

@@ -13,10 +13,10 @@ public class GameLoop implements Runnable{
     private boolean running = false; 
     private final double frameTime = 1.0/60.0;
 
+    // Constructor
     public GameLoop(Game game){
         this.game = game;
     }
-
 
     // Initializes window, thread, renderer, and the input
     public void start(){
@@ -27,11 +27,6 @@ public class GameLoop implements Runnable{
 
         thread.run();
     }
-
-    public void stop(){
-       
-    }
-
 
     // Main gameloop
     public void run(){ 
@@ -49,7 +44,6 @@ public class GameLoop implements Runnable{
             elapsedTime = currentTime - startTime;
             startTime = currentTime; // Update startTime to be able to loop properly. 
             capTime += elapsedTime;
-            //frameTime += elapsedTime;
 
              // Processing and printing the frames per second. 
             while (capTime >= frameTime){
@@ -58,12 +52,6 @@ public class GameLoop implements Runnable{
 
                 game.update(this);
                 input.update();
-                // if (frameTime >= 1.0){
-                //     frameTime = 0;
-                //     fps = frames;
-                //     frames = 0;
-                //     System.out.println(fps);
-                // }
             }
 
             // Render new frames.
@@ -71,12 +59,15 @@ public class GameLoop implements Runnable{
                 renderer.clear();
                 game.render(this, renderer);
                 window.update();
-                // frames++;
             }
         }
     }
 
-    public Input getInput(){
-        return input;
+    public void stop(){
+        return;
     }
+
+    // Getters
+    public Input getInput(){ return input; }
+    public Renderer getRenderer(){ return renderer; }
 }
